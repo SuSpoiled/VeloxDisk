@@ -1,0 +1,46 @@
+[Version]
+Signature   = "$Windows NT$"
+Class       = FileSystem
+ClassGuid   = {A8736309-F900-436B-8F41-95B0E224D51B}
+Provider    = %ProviderName%
+CatalogFile = veloxdisk.cat
+DriverVer   = 01/01/2026,1.0.0.0
+
+[Manufacturer]
+%ManufacturerName% = Standard, ntamd64
+
+[Standard.ntamd64]
+%VeloxDisk.DeviceDesc% = VeloxDisk.Install, KSROOT, veloxdisk
+
+[SourceDisksNames]
+1 = %DiskName%,,,\
+
+[SourceDisksFiles]
+veloxdisk.sys = 1,,
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[VeloxDisk.Install]
+CopyFiles = veloxdisk.sys
+
+[VeloxDisk.Install.Services]
+DisplayName    = %VeloxDisk.ServiceDesc%
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %13%\veloxdisk.sys
+
+[VeloxDisk.Install.HWCompatibility]
+AddReg = %VeloxDisk.AddReg%
+
+[VeloxDisk.AddReg]
+HKR,,SupportedOSes,,0x00010001,%"ntfs"
+HKR,,UpperDevices,,0x00010001,%"veloxdisk"
+
+[Strings]
+ProviderName      = "VeloxDisk"
+ManufacturerName  = "VeloxDisk"
+DeviceDesc        = "VeloxDisk"
+ServiceDesc       = "VeloxDisk Disk Cache Minifilter"
+DiskName          = "VeloxDisk Installation Disk"
